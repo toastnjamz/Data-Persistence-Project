@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,8 +10,8 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(1000)]
 public class MenuUIHandler : MonoBehaviour
 {
-    private string nameInput;
-    
+    public GameObject inputField;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,17 +22,11 @@ public class MenuUIHandler : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
-    public void ReadTextInput(string name)
+    public void NewNameEntered()
     {
-        nameInput = name;
-        Debug.Log(nameInput);
+        string text = inputField.GetComponent<TMP_InputField>().text;
+        GameManager.Instance.playerName = text;
     }
 
     public void SaveNameEntered()
