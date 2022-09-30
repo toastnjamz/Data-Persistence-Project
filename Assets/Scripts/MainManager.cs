@@ -29,7 +29,7 @@ public class MainManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.LoadNameAndScore();
-            DisplayNameAndHighScore(GameManager.Instance.playerName, GameManager.Instance.playerHighScore);
+            //DisplayNameAndHighScore(GameManager.Instance.playerName, GameManager.Instance.playerHighScore);
         }
         
         const float step = 0.6f;
@@ -87,9 +87,12 @@ public class MainManager : MonoBehaviour
 
     private void DisplayNameAndHighScore(string name, int score)
     {
-        playerName = name;
-        highScore = score;
-        nameAndHighScoreText.text = "Best Score: " + playerName + " : " + highScore;
+        if (name != null)
+        {
+            playerName = name;
+            highScore = score;
+            nameAndHighScoreText.text = "Best Score: " + playerName + " : " + highScore;
+        }
     }
 
     private void UpdateNameAndHighScore(string newName, int newScore)

@@ -32,11 +32,13 @@ public class MenuUIHandler : MonoBehaviour
     public void SaveNameEntered()
     {
         GameManager.Instance.SaveName();
+        // TODO: delete later?
     } 
 
     public void LoadNameEntered()
     {
         GameManager.Instance.LoadName();
+        // TODO: delete later?
     }
 
     public void Exit()
