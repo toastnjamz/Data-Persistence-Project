@@ -4,6 +4,7 @@ using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // Sets the script to be executed later than all default scripts
 // This is helpful for UI, since other things may need to be initialized before setting the UI
@@ -11,6 +12,10 @@ using UnityEngine.SceneManagement;
 public class MenuUIHandler : MonoBehaviour
 {
     public GameObject inputField;
+    
+    public Text nameAndHighScoreText;
+    public string playerName;
+    public int highScore;
 
     // Start is called before the first frame update
     void Start()
@@ -26,9 +31,11 @@ public class MenuUIHandler : MonoBehaviour
     public void NewNameEntered()
     {
         string text = inputField.GetComponent<TMP_InputField>().text;
-        GameManager.Instance.playerName = text;
+        GameManager.Instance.currentPlayerName = text;
     }
 
+    //TODO: create method to display name and high score
+    
     public void SaveNameEntered()
     {
         GameManager.Instance.SaveName();
@@ -44,6 +51,7 @@ public class MenuUIHandler : MonoBehaviour
     public void Exit()
     {
         GameManager.Instance.SaveName();
+        //TODO: do I need this?
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else

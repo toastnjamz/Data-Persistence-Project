@@ -14,8 +14,9 @@ public class MainManager : MonoBehaviour
     public GameObject GameOverText;
 
     public Text nameAndHighScoreText;
-    public string playerName;
-    public int highScore;
+    public string topPlayerName;
+    public int topHighScore;
+    public string currentPlayerName;
 
     private bool m_Started = false;
     private int m_Points;
@@ -29,9 +30,12 @@ public class MainManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.LoadNameAndScore();
-            //DisplayNameAndHighScore(GameManager.Instance.playerName, GameManager.Instance.playerHighScore);
+            Debug.Log(GameManager.Instance.currentPlayerName);
+            Debug.Log(topPlayerName);
+            Debug.Log(topHighScore);
+            //DisplayNameAndHighScore(GameManager.Instance.topPlayerName, GameManager.Instance.topHighScore);
         }
-        
+
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
@@ -82,27 +86,27 @@ public class MainManager : MonoBehaviour
     {
         m_GameOver = true;
         GameOverText.SetActive(true);
-        //UpdateNameAndHighScore(playername, m_Points);
+        UpdateNameAndHighScore(GameManager.Instance.currentPlayerName, m_Points);
     }
 
     private void DisplayNameAndHighScore(string name, int score)
     {
         if (name != null)
         {
-            playerName = name;
-            highScore = score;
-            nameAndHighScoreText.text = "Best Score: " + playerName + " : " + highScore;
+            topPlayerName = name;
+            topHighScore = score;
+            nameAndHighScoreText.text = "Best Score: " + topPlayerName + " : " + topHighScore;
         }
     }
 
     private void UpdateNameAndHighScore(string newName, int newScore)
     {
-        if (highScore <= newScore)
+        if (topHighScore <= newScore)
         {
-            highScore = newScore;
-            playerName = newName;
-            DisplayNameAndHighScore(playerName, highScore);
-            GameManager.Instance.SaveNameAndScore(playerName, highScore);
+            topHighScore = newScore;
+            topPlayerName = newName;
+            DisplayNameAndHighScore(topPlayerName, topHighScore);
+            GameManager.Instance.SaveNameAndScore(topPlayerName, topHighScore);
         }
     }
 }

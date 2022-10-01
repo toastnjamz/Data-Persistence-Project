@@ -6,8 +6,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    public string playerName;
-    public int playerHighScore;
+    public string currentPlayerName;
+    public string topPlayerName;
+    public int topHighScore;
 
     private void Awake()
     {
@@ -27,8 +28,8 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     class SaveData
     {
-        public string playerName;
-        public int playerHighScore;
+        public string playerNameToSave;
+        public int playerHighScoreToSave;
     }
 
     public void SaveName()
@@ -44,8 +45,8 @@ public class GameManager : MonoBehaviour
     public void SaveNameAndScore(string name, int score)
     {
         SaveData data = new SaveData();
-        data.playerName = name;
-        data.playerHighScore = score;
+        data.playerNameToSave = name;
+        data.playerHighScoreToSave = score;
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
@@ -59,8 +60,13 @@ public class GameManager : MonoBehaviour
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            playerName = data.playerName;
-            playerHighScore = data.playerHighScore;
+            topPlayerName = data.playerNameToSave;
+            topHighScore = data.playerHighScoreToSave;
+        }
+        else
+        {
+            topPlayerName = "";
+            topHighScore = 0;
         }
     }
 }
