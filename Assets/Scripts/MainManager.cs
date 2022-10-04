@@ -30,10 +30,7 @@ public class MainManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.LoadNameAndScore();
-            Debug.Log(GameManager.Instance.currentPlayerName);
-            Debug.Log(topPlayerName);
-            Debug.Log(topHighScore);
-            //DisplayNameAndHighScore(GameManager.Instance.topPlayerName, GameManager.Instance.topHighScore);
+            DisplayNameAndHighScore(GameManager.Instance.topPlayerName, GameManager.Instance.topHighScore);
         }
 
         const float step = 0.6f;
@@ -88,7 +85,7 @@ public class MainManager : MonoBehaviour
         GameOverText.SetActive(true);
         UpdateNameAndHighScore(GameManager.Instance.currentPlayerName, m_Points);
     }
-
+    
     private void DisplayNameAndHighScore(string name, int score)
     {
         if (name != null)
