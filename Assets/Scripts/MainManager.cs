@@ -88,12 +88,9 @@ public class MainManager : MonoBehaviour
     
     private void DisplayNameAndHighScore(string name, int score)
     {
-        if (name != null)
-        {
             topPlayerName = name;
             topHighScore = score;
             nameAndHighScoreText.text = "Best Score: " + topPlayerName + " : " + topHighScore;
-        }
     }
 
     private void UpdateNameAndHighScore(string newName, int newScore)

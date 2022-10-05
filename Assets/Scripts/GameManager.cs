@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            
         }
     }
 
@@ -57,16 +56,20 @@ public class GameManager : MonoBehaviour
         string path = Application.persistentDataPath + "/savefile.json";
         if (File.Exists(path))
         {
+            Debug.Log("File path exists, loading data");
             string json = File.ReadAllText(path);
             SaveData data = JsonUtility.FromJson<SaveData>(json);
 
-            topPlayerName = data.playerNameToSave;
-            topHighScore = data.playerHighScoreToSave;
-        }
-        else
-        {
-            topPlayerName = "";
-            topHighScore = 0;
+            if (data.playerNameToSave == null)
+            {
+                topPlayerName = "";
+                topHighScore = 0;
+            }
+            else
+            {
+                topPlayerName = data.playerNameToSave;
+                topHighScore = data.playerHighScoreToSave;
+            }
         }
     }
 }
