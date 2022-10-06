@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -29,16 +27,6 @@ public class GameManager : MonoBehaviour
     {
         public string playerNameToSave;
         public int playerHighScoreToSave;
-    }
-
-    public void SaveName()
-    {
-        // destroy later?
-    }
-
-    public void LoadName()
-    {
-        // destroy later?
     }
 
     public void SaveNameAndScore(string name, int score)

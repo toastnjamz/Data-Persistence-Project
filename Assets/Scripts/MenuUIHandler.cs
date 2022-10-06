@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -17,15 +15,14 @@ public class MenuUIHandler : MonoBehaviour
     public string playerName;
     public int highScore;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     public void StartNew()
     {
         SceneManager.LoadScene(1);
+    }
+
+    public void Start()
+    {
+        DisplayNameAndHighScore();
     }
 
     public void NewNameEntered()
@@ -34,24 +31,14 @@ public class MenuUIHandler : MonoBehaviour
         GameManager.Instance.currentPlayerName = text;
     }
 
-    //TODO: create method to display name and high score
-    
-    public void SaveNameEntered()
+    private void DisplayNameAndHighScore()
     {
-        GameManager.Instance.SaveName();
-        // TODO: delete later?
-    } 
-
-    public void LoadNameEntered()
-    {
-        GameManager.Instance.LoadName();
-        // TODO: delete later?
+        GameManager.Instance.LoadNameAndScore();
+        nameAndHighScoreText.text = "Best Score: " + GameManager.Instance.topPlayerName + " : " + GameManager.Instance.topHighScore;
     }
 
     public void Exit()
     {
-        GameManager.Instance.SaveName();
-        //TODO: do I need this?
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else
